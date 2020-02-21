@@ -24,3 +24,6 @@ Route::get('/getDls/{salario}', 'EmpleadosController@getDls')->name('empleados.g
 Route::get('/empleados/delete/{id}', 'EmpleadosController@destroy')->name('empleados.delete');
 Route::get('/empleados/desactivar/{id}', 'EmpleadosController@desactivar')->name('empleados.desactivar');
 Route::get('/empleados/activar/{id}', 'EmpleadosController@activar')->name('empleados.activar');
+Route::post('/empleados/update/{id}', 'EmpleadosController@update')->name('empleados.update');
+
+Route::get('/empleados/getAumento/{id}', 'EmpleadosController@getAumento')->name('empleados.aumento');

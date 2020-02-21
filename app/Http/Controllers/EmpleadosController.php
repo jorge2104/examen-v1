@@ -73,9 +73,11 @@ class EmpleadosController extends Controller
      * @param  \App\empleados  $empleados
      * @return \Illuminate\Http\Response
      */
-    public function show(empleados $empleados)
+    public function show($id)
     {
-        //
+        $empleado = empleados::FindOrFail($id);
+
+        return view('empleados.edit', compact('empleado'));
     }
 
     /**
@@ -84,9 +86,9 @@ class EmpleadosController extends Controller
      * @param  \App\empleados  $empleados
      * @return \Illuminate\Http\Response
      */
-    public function edit(empleados $empleados)
+    public function edit( $id, Request $request)
     {
-        //
+      //
     }
 
     /**
@@ -96,9 +98,21 @@ class EmpleadosController extends Controller
      * @param  \App\empleados  $empleados
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, empleados $empleados)
+    public function update(Request $request, $id)
     {
-        //
+      $empleado =  empleados::FindOrFail($id);
+      $empleado->codigo = $request->codigo;
+      $empleado->nombre = $request->nombre;
+      $empleado->salarioPesos = $request->salarioPesos;
+      $empleado->salarioDolares = $request->salarioDolares;
+      $empleado->direccion = $request->direccion;
+      $empleado->estado = $request->estado;
+      $empleado->ciudad = $request->ciudad;
+      $empleado->telefono = $request->telefono;
+      $empleado->correo = $request->correo;
+      $empleado->activo = $empleado->activo;
+      $empleado->save();
+      return redirect()->route('home');
     }
 
     /**
@@ -138,4 +152,29 @@ class EmpleadosController extends Controller
     curl_close($cURLConnection);
     return $result['data'];
     }
+
+
+
+    public function getAumento($id)
+    {
+      $empleado =  empleados::FindOrFail($id);
+
+      $meses = array();
+
+      $salario = $empleado->salarioPesos;
+
+      for($i=0 ; $i<=5 ; $i++ ){
+        $aumento = $salario * 0.06;
+        $nsalario = $salario + $aumento;
+        $salario = $nsalario;
+
+        array_push($meses , $salario);
+
+      }
+
+
+      return view('empleados.detalles', compact('empleado', 'meses'));
+    }
+
+
 }

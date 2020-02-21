@@ -101,11 +101,11 @@
       </div>
 
       <div class="col-md-2">
-        <a href="#" class="btn btn-info">Editar</a>
+        <a href="{{route('empleados.show', $empleado->id)}}" class="btn btn-info">Editar</a>
       </div>
 
       <div class="col-md-12">
-        <a href="#" class="btn btn-warning">Detalles</a>
+        <a href="{{route('empleados.aumento' , $empleado->id)}}" class="btn btn-warning">proyección salarial</a>
       </div>
 
     </div>
