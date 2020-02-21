@@ -74,9 +74,19 @@
 
 
       <button type="submit" class="btn btn-primary">Submit</button>
+
+
+        <a href="{{route('home')}}" class="btn btn-info"> Regresar </a>
+      
     </form>
   </div>
+
+
+
+
 </div>
+
+
 
 
 <script type="text/javascript">

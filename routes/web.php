@@ -19,11 +19,11 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('empleados', 'EmpleadosController');
-Route::get('/getDls/{salario}', 'EmpleadosController@getDls')->name('empleados.getDls');
-Route::get('/empleados/delete/{id}', 'EmpleadosController@destroy')->name('empleados.delete');
-Route::get('/empleados/desactivar/{id}', 'EmpleadosController@desactivar')->name('empleados.desactivar');
-Route::get('/empleados/activar/{id}', 'EmpleadosController@activar')->name('empleados.activar');
-Route::post('/empleados/update/{id}', 'EmpleadosController@update')->name('empleados.update');
+Route::resource('empleados', 'EmpleadosController')->middleware('auth');
+Route::get('/getDls/{salario}', 'EmpleadosController@getDls')->name('empleados.getDls')->middleware('auth');
+Route::get('/empleados/delete/{id}', 'EmpleadosController@destroy')->name('empleados.delete')->middleware('auth');
+Route::get('/empleados/desactivar/{id}', 'EmpleadosController@desactivar')->name('empleados.desactivar')->middleware('auth');
+Route::get('/empleados/activar/{id}', 'EmpleadosController@activar')->name('empleados.activar')->middleware('auth');
+Route::post('/empleados/update/{id}', 'EmpleadosController@update')->name('empleados.update')->middleware('auth');
 
-Route::get('/empleados/getAumento/{id}', 'EmpleadosController@getAumento')->name('empleados.aumento');
+Route::get('/empleados/getAumento/{id}', 'EmpleadosController@getAumento')->name('empleados.aumento')->middleware('auth');
